@@ -1,15 +1,21 @@
 package org.example;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+//@Table(name = "ReimbursementType")
 public class ReimbursementType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reimbursement_typeId")
     private int reimbursement_typeId;
-    @Column(name = "reimbursement_type")
+
     private String reimbursement_type;
+
+    @OneToMany(mappedBy = "reimbursementType", cascade = CascadeType.ALL)
+    private List<Reimbursement> reimbursementList = new ArrayList<Reimbursement>();
 
     public ReimbursementType(){}
 
