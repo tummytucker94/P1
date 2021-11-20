@@ -1,26 +1,32 @@
 package org.example;
 
 import javax.persistence.*;
-import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
+//@Table(name = "User")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private int user_id;
-    @Column(name = "user_name")
+
     private String user_name;
-    @Column(name = "password")
+
     private String password;
-    @Column(name = "first_name")
+
     private String first_name;
-    @Column(name = "last_name")
+
     private String last_name;
-    @Column(name = "email")
+
     private String email;
-    @Column(name = "role_id")
+
     private int role_id;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Reimbursement> reimbursementList = new ArrayList<Reimbursement>();
 
     public User(){}
 
